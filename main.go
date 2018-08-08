@@ -3,6 +3,7 @@ package main
 import(
 "fmt"
 "strconv"
+"./package1"
 )
 
 //Main is public
@@ -19,6 +20,7 @@ func main(){
     b := 6
     result := add(a,b)
     fmt.Println(result)
+    fmt.Println(package1.DataGet())
 }
 
 
