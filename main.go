@@ -2,6 +2,7 @@ package main
 
 import(
 "fmt"
+"strconv"
 )
 
 //Main is public
@@ -14,11 +15,18 @@ fmt.Println(name)
 }*/
 
 func main(){
-    result := add(5,6)
+    a := "5"
+    b := 6
+    result := add(a,b)
     fmt.Println(result)
 }
 
 
-func add(a,b int) int{
-    return a+b;
+func add(a string,b int) int{
+    i, err := strconv.Atoi(a)
+    if err == nil {
+    return i+b
+    }else{
+    return 0
+    }
 }
