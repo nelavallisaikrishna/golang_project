@@ -6,12 +6,24 @@ import(
 )
 
 
+//to create post request
+
+type Request struct{
+FirstName string `json : "first_name""`
+LastName string  `json : "last_name""`
+
+}
+
+
 func main(){
   r := gin.Default()
-  r.GET("/add", func(c *gin.Context){
+  r.POST("/add", func(c *gin.Context){
+        var request Request
+        c.Bind(&request)
         c.JSON(200, gin.H{
         "status": true,
         "value":"helloWorld",
+        "name": request.FirstName+ " " + request.LastName,
         })
 
   })
