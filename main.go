@@ -1,26 +1,21 @@
 package main
 
 import(
-"fmt"
 "strconv"
-"./package1"
+"github.com/gin-gonic/gin"
 )
 
-//Main is public
-//main is protected
-
-/*func main(){
-//var name string or
-name := "Hello world"
-fmt.Println(name)
-}*/
 
 func main(){
-    a := "5"
-    b := 6
-    result := add(a,b)
-    fmt.Println(result)
-    fmt.Println(package1.DataGet())
+  r := gin.Default()
+  r.GET("/add", func(c *gin.Context){
+        c.JSON(200, gin.H{
+        "status": true,
+        "value":"helloWorld",
+        })
+
+  })
+  r.Run(":5432")
 }
 
 
