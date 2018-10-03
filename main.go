@@ -2,7 +2,7 @@ package main
 
 import(
 "fmt"
-"time"
+
 )
 
 
@@ -15,18 +15,36 @@ LastName string  `json : "last_name""`
 
 }
 
+var chan1 chan string
 
 func say(s string){
 
 for i :=0; i < 5; i++{
-time.Sleep(100*time.Millisecond)
-fmt.Println(s)
+/*fmt.Println(s)
+
+if(i == 4){
+    chan1 <- "done"
+}*/
+chan1 <- s
 }
 
 }
 
 
 func main(){
-   go say("Hello World")
-   say("hello")
+   chan1 = make(chan string)
+   go say("World")
+   go say("hello")
+
+   fmt.Println(<- chan1)
+   fmt.Println(<- chan1)
+   for{
+    select{
+        case success := <- chan1:
+        fmt.Println(success)
+    }
+
+   }
+
+
 }
